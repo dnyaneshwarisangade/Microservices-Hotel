@@ -1,0 +1,25 @@
+server:
+  port: 9094
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: UserService
+          uri: lb://UserService
+          predicates:
+            - Path=/users/**
+
+
+
+        - id: HotelService
+          uri: lb://HotelService
+          predicates:
+            - Path=/hotels/**,/staff/**
+
+
+
+        - id: RatingService
+          uri: lb://RatingService
+          predicates:
+            - Path=/ratings/**
